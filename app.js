@@ -14,6 +14,16 @@ client.on('ready', () => {
     console.log('Client is ready!');
 });
 
+client.on('message', (message) => {
+    console.log('Pesan diterima:', message.body);
+
+    // Lakukan tindakan sesuai dengan pesan yang diterima
+    if (message.body.toLowerCase() === 'ada yang bisa kami bantu') {
+        console.log('Pesan balasan yang diharapkan diterima.');
+        // Lakukan tindakan atau respons yang diinginkan
+    }
+});
+
 client.initialize();
 
 app.post('/send-otp', (req, res) => {
@@ -34,11 +44,11 @@ app.post('/send-otp', (req, res) => {
 
 
 app.get('/send-multiple', (req, res) => {
-    let nomorall = ["087865537114", "087763305916", "083114598634"];
+    let nomorall = ["087863968484", "087866866694"];
     let b = 0;
     for (b; b < nomorall.length; b++) {
         const nomor = phoneNumberFormatter(nomorall[b]);
-        client.sendMessage(nomor, "LotimDev").then(response => {
+        client.sendMessage(nomor, "Tes bot").then(response => {
             console.log(response);
         }).catch(err => {
             res.status(500).json({
